@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
+import Key from '../weatherAPIKey';
+
 // THIS IS FOR OFF-LINE TESTING
 // import * as data from './weather.json'; // just for testing
 
 let data;
-fetch('http://api.wunderground.com/api/d4bb9fa9827c8918/forecast/q/CA/Irvine.json')
+const apiKey = Key;
+
+fetch(`http://api.wunderground.com/api/${apiKey}/forecast/q/CA/Irvine.json`)
   .then((response) => response.json())
   .then((json) => json)
   .then((result) => data = result) // assign result to global variable
