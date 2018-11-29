@@ -1,0 +1,395 @@
+{
+  "response": {
+  "version":"0.1",
+  "termsofService":"http://www.wunderground.com/weather/api/d/terms.html",
+  "features": {
+  "forecast": 1
+  }
+	}
+		,
+	"forecast":{
+		"txt_forecast": {
+		"date":"2:21 PM PST",
+		"forecastday": [
+		{
+		"period":0,
+		"icon":"clear",
+		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
+		"title":"Monday",
+		"fcttext":"Lots of sunshine. High 77F. Winds W at 5 to 10 mph.",
+		"fcttext_metric":"Partly cloudy. Low 10C.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":1,
+		"icon":"nt_partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_partlycloudy.gif",
+		"title":"Monday Night",
+		"fcttext":"Partly cloudy skies. Low 51F. Winds light and variable.",
+		"fcttext_metric":"Some clouds. Low around 10C. Winds light and variable.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":2,
+		"icon":"clear",
+		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
+		"title":"Tuesday",
+		"fcttext":"Sunshine. High near 75F. Winds SW at 5 to 10 mph.",
+		"fcttext_metric":"Plentiful sunshine. High 23C. Winds SW at 10 to 15 km/h.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":3,
+		"icon":"nt_partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_partlycloudy.gif",
+		"title":"Tuesday Night",
+		"fcttext":"A few clouds. Low 51F. Winds light and variable.",
+		"fcttext_metric":"A few clouds from time to time. Low near 10C. Winds light and variable.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":4,
+		"icon":"chancerain",
+		"icon_url":"http://icons.wxug.com/i/c/k/chancerain.gif",
+		"title":"Wednesday",
+		"fcttext":"Partly cloudy early followed by increasing clouds with showers developing later in the day. High 69F. Winds S at 5 to 10 mph. Chance of rain 50%.",
+		"fcttext_metric":"Partly cloudy early followed by increasing clouds with showers developing later in the day. High around 20C. Winds S at 10 to 15 km/h. Chance of rain 50%.",
+		"pop":"50"
+		}
+		,
+		{
+		"period":5,
+		"icon":"nt_rain",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_rain.gif",
+		"title":"Wednesday Night",
+		"fcttext":"Rain. Low 58F. Winds S at 10 to 15 mph. Chance of rain 100%. Rainfall around a half an inch.",
+		"fcttext_metric":"Rain likely. Low 14C. Winds S at 15 to 25 km/h. Chance of rain 100%. Rainfall around 12mm.",
+		"pop":"100"
+		}
+		,
+		{
+		"period":6,
+		"icon":"rain",
+		"icon_url":"http://icons.wxug.com/i/c/k/rain.gif",
+		"title":"Thursday",
+		"fcttext":"Cloudy with periods of rain. High 62F. Winds SW at 10 to 20 mph. Chance of rain 100%. Rainfall near a half an inch.",
+		"fcttext_metric":"Cloudy with periods of rain. High 16C. Winds SW at 15 to 30 km/h. Chance of rain 100%. Rainfall near 12mm.",
+		"pop":"100"
+		}
+		,
+		{
+		"period":7,
+		"icon":"nt_chancerain",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_chancerain.gif",
+		"title":"Thursday Night",
+		"fcttext":"Showers in the evening, then partly cloudy overnight. Low 48F. Winds W at 10 to 15 mph. Chance of rain 50%.",
+		"fcttext_metric":"Showers in the evening, then partly cloudy overnight. Low 8C. Winds WSW at 15 to 25 km/h. Chance of rain 50%.",
+		"pop":"50"
+		}
+		]
+		},
+		"simpleforecast": {
+		"forecastday": [
+		{"date":{
+	"epoch":"1543287600",
+	"pretty":"7:00 PM PST on November 26, 2018",
+	"day":26,
+	"month":11,
+	"year":2018,
+	"yday":329,
+	"hour":19,
+	"min":"00",
+	"sec":0,
+	"isdst":"0",
+	"monthname":"November",
+	"monthname_short":"Nov",
+	"weekday_short":"Mon",
+	"weekday":"Monday",
+	"ampm":"PM",
+	"tz_short":"PST",
+	"tz_long":"America/Los_Angeles"
+},
+		"period":1,
+		"high": {
+		"fahrenheit":"77",
+		"celsius":"25"
+		},
+		"low": {
+		"fahrenheit":"51",
+		"celsius":"11"
+		},
+		"conditions":"Clear",
+		"icon":"clear",
+		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
+		"skyicon":"",
+		"pop":0,
+		"qpf_allday": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"qpf_day": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"qpf_night": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"snow_allday": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_day": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_night": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"maxwind": {
+		"mph": 10,
+		"kph": 16,
+		"dir": "W",
+		"degrees": 273
+		},
+		"avewind": {
+		"mph": 8,
+		"kph": 13,
+		"dir": "W",
+		"degrees": 273
+		},
+		"avehumidity": 32,
+		"maxhumidity": 0,
+		"minhumidity": 0
+		}
+		,
+		{"date":{
+	"epoch":"1543374000",
+	"pretty":"7:00 PM PST on November 27, 2018",
+	"day":27,
+	"month":11,
+	"year":2018,
+	"yday":330,
+	"hour":19,
+	"min":"00",
+	"sec":0,
+	"isdst":"0",
+	"monthname":"November",
+	"monthname_short":"Nov",
+	"weekday_short":"Tue",
+	"weekday":"Tuesday",
+	"ampm":"PM",
+	"tz_short":"PST",
+	"tz_long":"America/Los_Angeles"
+},
+		"period":2,
+		"high": {
+		"fahrenheit":"75",
+		"celsius":"24"
+		},
+		"low": {
+		"fahrenheit":"51",
+		"celsius":"11"
+		},
+		"conditions":"Clear",
+		"icon":"clear",
+		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
+		"skyicon":"",
+		"pop":0,
+		"qpf_allday": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"qpf_day": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"qpf_night": {
+		"in": 0.00,
+		"mm": 0
+		},
+		"snow_allday": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_day": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_night": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"maxwind": {
+		"mph": 10,
+		"kph": 16,
+		"dir": "SW",
+		"degrees": 233
+		},
+		"avewind": {
+		"mph": 6,
+		"kph": 10,
+		"dir": "SW",
+		"degrees": 233
+		},
+		"avehumidity": 34,
+		"maxhumidity": 0,
+		"minhumidity": 0
+		}
+		,
+		{"date":{
+	"epoch":"1543460400",
+	"pretty":"7:00 PM PST on November 28, 2018",
+	"day":28,
+	"month":11,
+	"year":2018,
+	"yday":331,
+	"hour":19,
+	"min":"00",
+	"sec":0,
+	"isdst":"0",
+	"monthname":"November",
+	"monthname_short":"Nov",
+	"weekday_short":"Wed",
+	"weekday":"Wednesday",
+	"ampm":"PM",
+	"tz_short":"PST",
+	"tz_long":"America/Los_Angeles"
+},
+		"period":3,
+		"high": {
+		"fahrenheit":"69",
+		"celsius":"21"
+		},
+		"low": {
+		"fahrenheit":"58",
+		"celsius":"14"
+		},
+		"conditions":"Chance of Rain",
+		"icon":"chancerain",
+		"icon_url":"http://icons.wxug.com/i/c/k/chancerain.gif",
+		"skyicon":"",
+		"pop":50,
+		"qpf_allday": {
+		"in": 0.52,
+		"mm": 13
+		},
+		"qpf_day": {
+		"in": 0.02,
+		"mm": 1
+		},
+		"qpf_night": {
+		"in": 0.50,
+		"mm": 13
+		},
+		"snow_allday": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_day": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_night": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"maxwind": {
+		"mph": 10,
+		"kph": 16,
+		"dir": "S",
+		"degrees": 184
+		},
+		"avewind": {
+		"mph": 8,
+		"kph": 13,
+		"dir": "S",
+		"degrees": 184
+		},
+		"avehumidity": 62,
+		"maxhumidity": 0,
+		"minhumidity": 0
+		}
+		,
+		{"date":{
+	"epoch":"1543546800",
+	"pretty":"7:00 PM PST on November 29, 2018",
+	"day":29,
+	"month":11,
+	"year":2018,
+	"yday":332,
+	"hour":19,
+	"min":"00",
+	"sec":0,
+	"isdst":"0",
+	"monthname":"November",
+	"monthname_short":"Nov",
+	"weekday_short":"Thu",
+	"weekday":"Thursday",
+	"ampm":"PM",
+	"tz_short":"PST",
+	"tz_long":"America/Los_Angeles"
+},
+		"period":4,
+		"high": {
+		"fahrenheit":"62",
+		"celsius":"17"
+		},
+		"low": {
+		"fahrenheit":"48",
+		"celsius":"9"
+		},
+		"conditions":"Rain",
+		"icon":"rain",
+		"icon_url":"http://icons.wxug.com/i/c/k/rain.gif",
+		"skyicon":"",
+		"pop":100,
+		"qpf_allday": {
+		"in": 0.63,
+		"mm": 16
+		},
+		"qpf_day": {
+		"in": 0.58,
+		"mm": 15
+		},
+		"qpf_night": {
+		"in": 0.06,
+		"mm": 2
+		},
+		"snow_allday": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_day": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"snow_night": {
+		"in": 0.0,
+		"cm": 0.0
+		},
+		"maxwind": {
+		"mph": 20,
+		"kph": 32,
+		"dir": "SW",
+		"degrees": 234
+		},
+		"avewind": {
+		"mph": 15,
+		"kph": 24,
+		"dir": "SW",
+		"degrees": 234
+		},
+		"avehumidity": 87,
+		"maxhumidity": 0,
+		"minhumidity": 0
+		}
+		]
+		}
+	}
+}
