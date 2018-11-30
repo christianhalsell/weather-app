@@ -21,11 +21,14 @@ import * as data from './weather.json'; // just for testing
 
 class WeatherApp extends React.Component {
   render() {
+    const title = 'Weather App';
+    const subTitle = 'Weather app in React'
+
     return (
       <div>
-        <Header />
+        <Header title={title} subtitle={subTitle} />
         <InputForm />
-        <Forecast />        
+        <Forecast />
       </div>
     )
   }
@@ -35,8 +38,8 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        <h1>Weather</h1>
-        <p>Weather project</p>
+        <h1>{this.props.title}</h1>
+        <p>{this.props.subtitle}</p>
       </div>
     )
   }
@@ -59,26 +62,33 @@ class Forecast extends React.Component {
         <p>Forecast</p>
         {
           data.forecast.simpleforecast.forecastday.map((day) => {
-            if (day.period <= 3) {
-              const displayMonth = day.date.monthname;
-              const displayDay = day.date.day;
-              const displayConditions = day.conditions;
-              const displayIconUrl = day.icon_url;
-              
-              return (
-                <div key={displayDay}>
-                  {displayMonth} 
-                  {displayDay} 
-                  {displayConditions} 
-                  <img src={displayIconUrl} width="32" height="32" />
-                </div>
-              )
-            }
+            return (
+              <ForecastDay 
+                key={day.date.day} 
+                month={day.date.monthname} 
+                day={day.date.day} 
+                conditions={day.conditions} 
+                imgsrc={day.icon_url} 
+              />
+            )
           })
         }
       </div>      
     );
   }
 };
+
+class ForecastDay extends React.Component {
+  render() {
+    return (
+      <div>
+        {this.props.month} 
+        {this.props.day} 
+        {this.props.conditions} 
+        <img src={this.props.imgsrc} width="32" height="32" />
+      </div>
+    )
+  }
+}
 
 ReactDOM.render(<WeatherApp />, document.getElementById('app'));
