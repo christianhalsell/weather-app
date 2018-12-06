@@ -8,27 +8,44 @@ import Key from './weatherAPIKey';
 // THIS IS FOR OFF-LINE TESTING
 import * as data from './weather.json'; // just for testing
 
-// let data;
-// const apiKey = Key;
-
-// fetch(`http://api.wunderground.com/api/${apiKey}/forecast/q/CA/Irvine.json`)
-//   .then((response) => response.json())
-//   .then((json) => json)
-//   .then((result) => data = result) // assign result to global variable
-//   .then((weather) => console.log(weather)) // show the full api response in console
-//   .then(() => render()) // render component
-//   .catch((err) => console.error(`Error: ${err.message}`));
+const apiKey = Key;
 
 class WeatherApp extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      weather: data
+    }
+
+    setTimeout(() => { // used for testing default state
+      fetch(`http://api.wunderground.com/api/${apiKey}/forecast/q/CA/Irvine.json`)
+        .then((response) => response.json())
+        .then((result) => {
+          this.setState(() => {
+            return {
+              weather: result
+            }
+          });
+        })
+        .catch((err) => console.error(`Error: ${err.message}`)
+      );
+    }, 2000);
+  }
+
   render() {
     const title = 'Weather App';
     const subTitle = 'Weather app in React'
+    const currentCondition = this.state.weather.forecast.simpleforecast.forecastday;
+
+    console.log(this.state.weather);
+    console.log(this.state.weather.forecast.simpleforecast.forecastday[0].conditions);
 
     return (
       <div>
         <Header title={title} subtitle={subTitle} />
         <InputForm />
-        <Forecast />
+        <Forecast conditions={currentCondition} />
       </div>
     )
   }
@@ -46,10 +63,19 @@ class Header extends React.Component {
 };
 
 class InputForm extends React.Component {
+  findLocation(e) {
+    e.preventDefault();
+    
+    console.log('%c Submitted...', 'background-color: cyan; padding: 2px 10px')
+  };
+
   render() {
     return (
       <div>
-        <h3>Input form</h3>
+        <form>
+          <input type="text" name="location" />
+          <button onClick={this.findLocation}>Submit</button>
+        </form>
       </div>
     )
   }
@@ -61,7 +87,7 @@ class Forecast extends React.Component {
       <div>
         <p>Forecast</p>
         {
-          data.forecast.simpleforecast.forecastday.map((day) => {
+          this.props.conditions && this.props.conditions.map((day) => {
             return (
               <ForecastDay 
                 key={day.date.day} 
