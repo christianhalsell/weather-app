@@ -6,7 +6,7 @@ import './styles/styles.scss';
 import Key from './weatherAPIKey';
 
 // THIS IS FOR OFF-LINE TESTING
-import * as data from './weather.json'; // just for testing
+// import * as data from './weather.json'; // just for testing
 
 const apiKey = Key;
 
@@ -15,7 +15,7 @@ class WeatherApp extends React.Component {
     super(props);
 
     this.state = {
-      weather: data
+      weather: false
     }
 
     setTimeout(() => { // used for testing default state
@@ -36,16 +36,13 @@ class WeatherApp extends React.Component {
   render() {
     const title = 'Weather App';
     const subTitle = 'Weather app in React'
-    const currentCondition = this.state.weather.forecast.simpleforecast.forecastday;
-
-    console.log(this.state.weather);
-    console.log(this.state.weather.forecast.simpleforecast.forecastday[0].conditions);
+    const currentCondition = this.state.weather ? this.state.weather.forecast.simpleforecast.forecastday : false;
 
     return (
       <div>
         <Header title={title} subtitle={subTitle} />
         <InputForm />
-        <Forecast conditions={currentCondition} />
+        { currentCondition && <Forecast conditions={currentCondition } />}
       </div>
     )
   }
@@ -83,11 +80,12 @@ class InputForm extends React.Component {
 
 class Forecast extends React.Component {
   render() {
+    console.log('this.props', this.props);
     return (
       <div>
         <p>Forecast</p>
         {
-          this.props.conditions && this.props.conditions.map((day) => {
+          this.props.conditions.map((day) => {
             return (
               <ForecastDay 
                 key={day.date.day} 
