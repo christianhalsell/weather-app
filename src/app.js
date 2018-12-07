@@ -4,34 +4,34 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
 import Key from './weatherAPIKey';
-
-// THIS IS FOR OFF-LINE TESTING
-// import * as data from './weather.json'; // just for testing
-
 const apiKey = Key;
 
 class WeatherApp extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      weather: false
-    }
+    this.getWeather = this.getWeather.bind(this);
 
-    setTimeout(() => { // used for testing default state
-      fetch(`http://api.wunderground.com/api/${apiKey}/forecast/q/CA/Irvine.json`)
-        .then((response) => response.json())
-        .then((result) => {
-          this.setState(() => {
-            return {
-              weather: result
-            }
-          });
-        })
-        .catch((err) => console.error(`Error: ${err.message}`)
-      );
-    }, 2000);
+    this.state = {
+      weather: false,
+      zipCode: undefined
+    }
   }
+
+  getWeather(zipCode) {
+    fetch(`http://api.wunderground.com/api/${apiKey}/forecast/q/${zipCode}.json`)
+      .then((response) => response.json())
+      .then((result) => {
+        this.setState(() => {
+          return {
+            weather: result,
+            zipCode
+          }
+        });
+      })
+      .catch((err) => console.error(`Error: ${err.message}`)
+    );
+  };
 
   render() {
     const title = 'Weather App';
@@ -41,8 +41,8 @@ class WeatherApp extends React.Component {
     return (
       <div>
         <Header title={title} subtitle={subTitle} />
-        <InputForm />
-        { currentCondition && <Forecast conditions={currentCondition } />}
+        <InputForm getWeather={this.getWeather} />
+        { currentCondition && <Forecast conditions={currentCondition} zipCode={this.state.zipCode} />}
       </div>
     )
   }
@@ -60,18 +60,25 @@ class Header extends React.Component {
 };
 
 class InputForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.findLocation = this.findLocation.bind(this);
+  }
+
   findLocation(e) {
     e.preventDefault();
-    
-    console.log('%c Submitted...', 'background-color: cyan; padding: 2px 10px')
+
+    const zipCode = e.target.elements.location.value.trim();
+    this.props.getWeather(zipCode);
+    e.target.elements.location.value = '';``
   };
 
   render() {
     return (
       <div>
-        <form>
-          <input type="text" name="location" />
-          <button onClick={this.findLocation}>Submit</button>
+        <form onSubmit={this.findLocation}>
+          <input type="text" name="location" placeholder="Enter your zipcode" />
+          <button>Submit</button>
         </form>
       </div>
     )
@@ -83,7 +90,7 @@ class Forecast extends React.Component {
     console.log('this.props', this.props);
     return (
       <div>
-        <p>Forecast</p>
+        <p>Forecast for {this.props.zipCode}</p>
         {
           this.props.conditions.map((day) => {
             return (
@@ -106,10 +113,7 @@ class ForecastDay extends React.Component {
   render() {
     return (
       <div>
-        {this.props.month} 
-        {this.props.day} 
-        {this.props.conditions} 
-        <img src={this.props.imgsrc} width="32" height="32" />
+        {this.props.month} {this.props.day} {this.props.conditions} <img src={this.props.imgsrc} width="32" height="32" />
       </div>
     )
   }
