@@ -13,30 +13,31 @@ class WeatherApp extends React.Component {
     this.getWeather = this.getWeather.bind(this);
 
     this.state = {
-      weather: false,
+      current: false,
+      forecast: false,
       zipCode: undefined
     }
   }
 
   getWeather(zipCode) {
-    fetch(`http://api.wunderground.com/api/${apiKey}/forecast/q/${zipCode}.json`)
-      .then((response) => response.json())
-      .then((result) => {
-        this.setState(() => {
-          return {
-            weather: result,
-            zipCode
-          }
-        });
-      })
-      .catch((err) => console.error(`Error: ${err.message}`)
-    );
+
+    Promise.all([
+      fetch(`http://api.wunderground.com/api/${apiKey}/conditions/q/${zipCode}.json`),
+      fetch(`http://api.wunderground.com/api/${apiKey}/forecast/q/${zipCode}.json`)
+    ])
+    .then(([json1, json2]) => Promise.all([json1.json(), json2.json()]))
+    .then(([data1, data2]) => this.setState({
+      current: data1,
+      forecast: data2,
+      zipCode
+    }))
+    .catch((err) => console.error(err.message))
   };
 
   render() {
     const title = 'Weather App';
     const subTitle = 'Weather app in React'
-    const currentCondition = this.state.weather ? this.state.weather.forecast.simpleforecast.forecastday : false;
+    const currentCondition = this.state.forecast ? this.state.forecast.forecast.simpleforecast.forecastday : false;
 
     return (
       <div>
