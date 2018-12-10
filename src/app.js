@@ -13,14 +13,13 @@ class WeatherApp extends React.Component {
     this.getWeather = this.getWeather.bind(this);
 
     this.state = {
-      current: false,
-      forecast: false,
+      current: undefined,
+      forecast: undefined,
       zipCode: undefined
     }
   }
 
   getWeather(zipCode) {
-
     Promise.all([
       fetch(`http://api.wunderground.com/api/${apiKey}/conditions/q/${zipCode}.json`),
       fetch(`http://api.wunderground.com/api/${apiKey}/forecast/q/${zipCode}.json`)
@@ -31,19 +30,21 @@ class WeatherApp extends React.Component {
       forecast: data2,
       zipCode
     }))
+    // .then(() => console.log(this.state.current.current_observation))
     .catch((err) => console.error(err.message))
   };
 
   render() {
     const title = 'Weather App';
     const subTitle = 'Weather app in React'
-    const currentCondition = this.state.forecast ? this.state.forecast.forecast.simpleforecast.forecastday : false;
+    const currentConditions = this.state.current ? this.state.current.current_observation : false;
+    const forecast = this.state.forecast ? this.state.forecast.forecast.simpleforecast.forecastday : false;
 
     return (
       <div>
         <Header title={title} subtitle={subTitle} />
         <InputForm getWeather={this.getWeather} />
-        { currentCondition && <Forecast conditions={currentCondition} zipCode={this.state.zipCode} />}
+        { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} zipCode={this.state.zipCode} />}
       </div>
     )
   }
@@ -71,7 +72,7 @@ class InputForm extends React.Component {
 
     const zipCode = e.target.elements.location.value.trim();
     this.props.getWeather(zipCode);
-    e.target.elements.location.value = '';``
+    e.target.elements.location.value = '';
   };
 
   render() {
@@ -91,9 +92,14 @@ class Forecast extends React.Component {
     console.log('this.props', this.props);
     return (
       <div>
-        <p>Forecast for {this.props.zipCode}</p>
+        <p>Forecast for {this.props.currentConditions.display_location.full}, {this.props.zipCode}</p>
         {
-          this.props.conditions.map((day) => {
+          <CurrentConditions
+            currentTemperature={this.props.currentConditions.temp_f}
+          />
+        }
+        {
+          this.props.forecast.map((day) => {
             return (
               <ForecastDay 
                 key={day.date.day} 
@@ -109,6 +115,16 @@ class Forecast extends React.Component {
     );
   }
 };
+
+class CurrentConditions extends React.Component {
+  render() {
+    return (
+      <div>
+        <h2>{this.props.currentTemperature}&deg; F</h2>
+      </div>
+    )
+  }
+}
 
 class ForecastDay extends React.Component {
   render() {
