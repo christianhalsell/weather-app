@@ -14,8 +14,7 @@ class WeatherApp extends React.Component {
 
     this.state = {
       current: undefined,
-      forecast: undefined,
-      zipCode: undefined
+      forecast: undefined
     }
   }
 
@@ -27,10 +26,8 @@ class WeatherApp extends React.Component {
     .then(([json1, json2]) => Promise.all([json1.json(), json2.json()]))
     .then(([data1, data2]) => this.setState({
       current: data1,
-      forecast: data2,
-      zipCode
+      forecast: data2
     }))
-    // .then(() => console.log(this.state.current.current_observation))
     .catch((err) => console.error(err.message))
   };
 
@@ -38,13 +35,13 @@ class WeatherApp extends React.Component {
     const title = 'Weather App';
     const subTitle = 'Weather app in React'
     const currentConditions = this.state.current ? this.state.current.current_observation : false;
-    const forecast = this.state.forecast ? this.state.forecast.forecast.simpleforecast.forecastday : false;
+    const forecast = (this.state.forecast && this.state.forecast.forecast) ? this.state.forecast.forecast.simpleforecast.forecastday : false;
 
     return (
       <div>
         <Header title={title} subtitle={subTitle} />
         <InputForm getWeather={this.getWeather} />
-        { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} zipCode={this.state.zipCode} />}
+        { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} />}
       </div>
     )
   }
@@ -92,10 +89,12 @@ class Forecast extends React.Component {
     console.log('this.props', this.props);
     return (
       <div>
-        <p>Forecast for {this.props.currentConditions.display_location.full}, {this.props.zipCode}</p>
+        <p>Forecast for {this.props.currentConditions.display_location.full}</p>
         {
           <CurrentConditions
             currentTemperature={this.props.currentConditions.temp_f}
+            currentIconSrc={this.props.currentConditions.icon_url}
+            currentWeather={this.props.currentConditions.weather}
           />
         }
         {
@@ -121,6 +120,7 @@ class CurrentConditions extends React.Component {
     return (
       <div>
         <h2>{this.props.currentTemperature}&deg; F</h2>
+        <p>{this.props.currentWeather} <img src={this.props.currentIconSrc} /></p>        
       </div>
     )
   }
