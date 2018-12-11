@@ -41,21 +41,19 @@ class WeatherApp extends React.Component {
       <div>
         <Header title={title} subtitle={subTitle} />
         <InputForm getWeather={this.getWeather} />
-        { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} />}
+        { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} /> }
       </div>
     )
   }
 };
 
-class Header extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <p>{this.props.subtitle}</p>
-      </div>
-    )
-  }
+const Header = (props) => {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <p>{props.subtitle}</p>
+    </div>
+  );
 };
 
 class InputForm extends React.Component {
@@ -83,6 +81,8 @@ class InputForm extends React.Component {
     )
   }
 };
+
+// const Forecast ???
 
 class Forecast extends React.Component {
   render() {
@@ -115,25 +115,21 @@ class Forecast extends React.Component {
   }
 };
 
-class CurrentConditions extends React.Component {
-  render() {
-    return (
-      <div>
-        <h2>{this.props.currentTemperature}&deg; F</h2>
-        <p>{this.props.currentWeather} <img src={this.props.currentIconSrc} /></p>        
-      </div>
-    )
-  }
-}
+const CurrentConditions = (props) => {
+  return (
+    <div>
+      <h2>{props.currentTemperature}&deg; F</h2>
+      <p>{props.currentWeather} <img src={props.currentIconSrc} /></p>        
+    </div>
+  );
+};
 
-class ForecastDay extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.month} {this.props.day} {this.props.conditions} <img src={this.props.imgsrc} width="32" height="32" />
-      </div>
-    )
-  }
-}
+const ForecastDay = (props) => {
+  return (
+    <div>
+      {props.month} {props.day} {props.conditions} <img src={props.imgsrc} width="32" height="32" />
+    </div>
+  );
+};
 
 ReactDOM.render(<WeatherApp />, document.getElementById('app'));
