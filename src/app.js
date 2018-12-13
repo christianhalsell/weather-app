@@ -82,38 +82,34 @@ class InputForm extends React.Component {
   }
 };
 
-// const Forecast ???
-
-class Forecast extends React.Component {
-  render() {
-    console.log('this.props', this.props);
-    return (
-      <div>
-        <p>Forecast for {this.props.currentConditions.display_location.full}</p>
-        {
-          <CurrentConditions
-            currentTemperature={this.props.currentConditions.temp_f}
-            currentIconSrc={this.props.currentConditions.icon_url}
-            currentWeather={this.props.currentConditions.weather}
-          />
-        }
-        {
-          this.props.forecast.map((day) => {
-            return (
-              <ForecastDay 
-                key={day.date.day} 
-                month={day.date.monthname} 
-                day={day.date.day} 
-                conditions={day.conditions} 
-                imgsrc={day.icon_url} 
-              />
-            )
-          })
-        }
-      </div>      
-    );
-  }
-};
+const Forecast = (props) => {
+  console.log('props', props);
+  return (
+    <div>
+      <p>Forecast for {props.currentConditions.display_location.full}</p>
+      {
+        <CurrentConditions
+          currentTemperature={props.currentConditions.temp_f}
+          currentIconSrc={props.currentConditions.icon_url}
+          currentWeather={props.currentConditions.weather}
+        />
+      }
+      {
+        props.forecast.map((day) => {
+          return (
+            <ForecastDay 
+              key={day.date.day} 
+              month={day.date.monthname} 
+              day={day.date.day} 
+              conditions={day.conditions} 
+              imgsrc={day.icon_url} 
+            />
+          )
+        })
+      }
+    </div>      
+  );
+}
 
 const CurrentConditions = (props) => {
   return (
