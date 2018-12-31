@@ -13,35 +13,34 @@ class WeatherApp extends React.Component {
     this.getWeather = this.getWeather.bind(this);
 
     this.state = {
-      current: undefined,
-      forecast: undefined
+      weather: undefined
     }
   }
 
   getWeather(zipCode) {
-    Promise.all([
-      fetch(`http://api.wunderground.com/api/${apiKey}/conditions/q/${zipCode}.json`),
-      fetch(`http://api.wunderground.com/api/${apiKey}/forecast/q/${zipCode}.json`)
-    ])
-    .then(([json1, json2]) => Promise.all([json1.json(), json2.json()]))
-    .then(([data1, data2]) => this.setState({
-      current: data1,
-      forecast: data2
+    fetch(`https://api.apixu.com/v1/forecast.json?key=${apiKey}&q=${zipCode}&days=3`)
+    .then((json) => json.json())
+    .then((data) => this.setState({
+      weather: data
     }))
+    .then(() => {
+      console.log('this.state', this.state);
+    })
     .catch((err) => console.error(err.message))
   };
 
   render() {
     const title = 'Weather App';
     const subTitle = 'Weather app in React'
-    const currentConditions = this.state.current ? this.state.current.current_observation : false;
-    const forecast = (this.state.forecast && this.state.forecast.forecast) ? this.state.forecast.forecast.simpleforecast.forecastday : false;
+    const currentConditions = this.state.weather ? this.state.weather.current : false;
+    const location = this.state.weather ? this.state.weather.location : false;
+    const forecast = (this.state.weather && this.state.weather.forecast) ? this.state.weather.forecast.forecastday : false;
 
     return (
       <div>
         <Header title={title} subtitle={subTitle} />
         <InputForm getWeather={this.getWeather} />
-        { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} /> }
+        { forecast && <Forecast currentConditions={currentConditions} location={location} forecast={forecast} /> }
       </div>
     )
   }
@@ -83,26 +82,25 @@ class InputForm extends React.Component {
 };
 
 const Forecast = (props) => {
-  console.log('props', props);
   return (
     <div>
-      <p>Forecast for {props.currentConditions.display_location.full}</p>
+      <p>Forecast for {props.location.name }, {props.location.region}</p>
       {
         <CurrentConditions
           currentTemperature={props.currentConditions.temp_f}
-          currentIconSrc={props.currentConditions.icon_url}
-          currentWeather={props.currentConditions.weather}
+          currentIconSrc={props.currentConditions.condition.icon}
+          currentWeather={props.currentConditions.condition.text}
         />
       }
       {
         props.forecast.map((day) => {
           return (
             <ForecastDay 
-              key={day.date.day} 
-              month={day.date.monthname} 
-              day={day.date.day} 
-              conditions={day.conditions} 
-              imgsrc={day.icon_url} 
+              key={day.date} 
+              // month={day.date.monthname} 
+              day={day.date} 
+              conditions={day.day.condition.text} 
+              imgsrc={day.day.condition.icon} 
             />
           )
         })
