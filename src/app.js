@@ -1,3 +1,5 @@
+// TODO: install moment for dates
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css/normalize.css';
@@ -15,7 +17,20 @@ class WeatherApp extends React.Component {
     this.state = {
       weather: undefined
     }
-  }
+  };
+
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem('zipcode');
+      const storedZip = JSON.parse(json);
+
+      if (storedZip) {
+        this.getWeather(storedZip);
+      }
+    } catch (err) {
+      console.log(err.message)
+    }
+  };
 
   getWeather(zipCode) {
     fetch(`https://api.apixu.com/v1/forecast.json?key=${apiKey}&q=${zipCode}&days=3`)
@@ -65,6 +80,10 @@ class InputForm extends React.Component {
     e.preventDefault();
 
     const zipCode = e.target.elements.location.value.trim();
+
+    const json = JSON.stringify(zipCode);
+    localStorage.setItem('zipcode', json);
+
     this.props.getWeather(zipCode);
     e.target.elements.location.value = '';
   };
@@ -73,7 +92,7 @@ class InputForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.findLocation}>
-          <input type="text" name="location" placeholder="Enter your zipcode" />
+          <input type="text" name="location" placeholder="Enter your city or zipcode" />
           <button>Submit</button>
         </form>
       </div>
@@ -96,11 +115,12 @@ const Forecast = (props) => {
         props.forecast.map((day) => {
           return (
             <ForecastDay 
-              key={day.date} 
-              // month={day.date.monthname} 
+              key={day.date}
               day={day.date} 
               conditions={day.day.condition.text} 
-              imgsrc={day.day.condition.icon} 
+              imgsrc={day.day.condition.icon}
+              high={day.day.maxtemp_f}
+              low={day.day.mintemp_f}
             />
           )
         })
@@ -121,7 +141,7 @@ const CurrentConditions = (props) => {
 const ForecastDay = (props) => {
   return (
     <div>
-      {props.month} {props.day} {props.conditions} <img src={props.imgsrc} width="32" height="32" />
+      {props.month} {props.day} {props.conditions} <img src={props.imgsrc} width="32" height="32" /> High: {props.high} Low: {props.low}
     </div>
   );
 };
