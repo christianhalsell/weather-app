@@ -1,5 +1,5 @@
 // TODO: install moment for dates
-// TODO: error message if there is no valid zip
+// TODO: add wind direction and speed in current
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -82,12 +82,12 @@ class InputForm extends React.Component {
   findLocation(e) {
     e.preventDefault();
 
-    const zipCode = e.target.elements.location.value.trim();
+    const location = e.target.elements.location.value.trim();
 
-    const json = JSON.stringify(zipCode);
+    const json = JSON.stringify(location);
     localStorage.setItem('location', json);
 
-    this.props.getWeather(zipCode);
+    this.props.getWeather(location);
     e.target.elements.location.value = '';
   };
 
