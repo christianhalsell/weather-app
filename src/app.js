@@ -1,4 +1,5 @@
 // TODO: install moment for dates
+// TODO: error message if there is no valid zip
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -21,7 +22,7 @@ class WeatherApp extends React.Component {
 
   componentDidMount() {
     try {
-      const json = localStorage.getItem('zipcode');
+      const json = localStorage.getItem('location');
       const storedZip = JSON.parse(json);
 
       if (storedZip) {
@@ -50,11 +51,13 @@ class WeatherApp extends React.Component {
     const currentConditions = this.state.weather ? this.state.weather.current : false;
     const location = this.state.weather ? this.state.weather.location : false;
     const forecast = (this.state.weather && this.state.weather.forecast) ? this.state.weather.forecast.forecastday : false;
-
+    const error = (this.state.weather && this.state.weather.error) ? this.state.weather.error.message : false;
+    
     return (
       <div>
         <Header title={title} subtitle={subTitle} />
         <InputForm getWeather={this.getWeather} />
+        { error && <p>{error}</p> }
         { forecast && <Forecast currentConditions={currentConditions} location={location} forecast={forecast} /> }
       </div>
     )
@@ -82,7 +85,7 @@ class InputForm extends React.Component {
     const zipCode = e.target.elements.location.value.trim();
 
     const json = JSON.stringify(zipCode);
-    localStorage.setItem('zipcode', json);
+    localStorage.setItem('location', json);
 
     this.props.getWeather(zipCode);
     e.target.elements.location.value = '';
