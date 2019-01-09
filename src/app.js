@@ -1,3 +1,4 @@
+// TODO: fix alerts for node_modules
 // TODO: install moment for dates
 // TODO: add wind direction and speed in current
 
