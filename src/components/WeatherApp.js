@@ -7,14 +7,20 @@ import Key from '../weatherAPIKey';
 const apiKey = Key;
 
 export default class WeatherApp extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    weather: undefined
+  }
 
-    this.getWeather = this.getWeather.bind(this);
-
-    this.state = {
-      weather: undefined
-    }
+  getWeather = (zipCode) => {
+    fetch(`https://api.apixu.com/v1/forecast.json?key=${apiKey}&q=${zipCode}&days=3`)
+    .then((json) => json.json())
+    .then((data) => this.setState({
+      weather: data
+    }))
+    .then(() => {
+      console.log('this.state', this.state);
+    })
+    .catch((err) => console.error(err.message))
   };
 
   componentDidMount() {
@@ -28,18 +34,6 @@ export default class WeatherApp extends React.Component {
     } catch (err) {
       console.log(err.message)
     }
-  };
-
-  getWeather(zipCode) {
-    fetch(`https://api.apixu.com/v1/forecast.json?key=${apiKey}&q=${zipCode}&days=3`)
-    .then((json) => json.json())
-    .then((data) => this.setState({
-      weather: data
-    }))
-    .then(() => {
-      console.log('this.state', this.state);
-    })
-    .catch((err) => console.error(err.message))
   };
 
   render() {

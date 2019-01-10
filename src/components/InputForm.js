@@ -1,12 +1,7 @@
 import React from 'react';
 
 export default class InputForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.findLocation = this.findLocation.bind(this);
-  }
-
-  findLocation(e) {
+  findLocation= (e) => {
     e.preventDefault();
 
     const location = e.target.elements.location.value.trim();
