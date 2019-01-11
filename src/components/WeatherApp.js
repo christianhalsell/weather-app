@@ -61,9 +61,8 @@ export default class WeatherApp extends React.Component {
     
     return (
       <div>
-        <Header title={title} subtitle={subTitle} />
-        <InputForm getWeather={this.getWeather} />
-        <button onClick={this.openInputModal}>Mobile Input</button>
+        <Header title={title} subtitle={subTitle} openInputModal={this.openInputModal} />
+        <InputForm getWeather={this.getWeather} />        
         { error && <p>{error}</p> }
         { forecast && <Forecast currentConditions={currentConditions} location={location} forecast={forecast} /> }
         <InputModal
