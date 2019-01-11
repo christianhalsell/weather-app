@@ -2,25 +2,40 @@ import React from 'react';
 import Header from './Header';
 import Forecast from './Forecast';
 import InputForm from './InputForm';
+import InputModal from './InputModal';
 
 import Key from '../weatherAPIKey';
 const apiKey = Key;
 
 export default class WeatherApp extends React.Component {
   state = {
-    weather: undefined
+    weather: undefined,
+    inputModal: undefined
   }
 
   getWeather = (zipCode) => {
     fetch(`https://api.apixu.com/v1/forecast.json?key=${apiKey}&q=${zipCode}&days=3`)
     .then((json) => json.json())
     .then((data) => this.setState({
-      weather: data
+      weather: data,
+      inputModal: undefined
     }))
     .then(() => {
       console.log('this.state', this.state);
     })
     .catch((err) => console.error(err.message))
+  };
+
+  openInputModal = () => {
+    this.setState(() => ({
+      inputModal: true
+    }));
+  };
+
+  closeInputModal = () => {
+    this.setState(() => ({
+      inputModal: undefined
+    }));
   };
 
   componentDidMount() {
@@ -48,8 +63,14 @@ export default class WeatherApp extends React.Component {
       <div>
         <Header title={title} subtitle={subTitle} />
         <InputForm getWeather={this.getWeather} />
+        <button onClick={this.openInputModal}>Mobile Input</button>
         { error && <p>{error}</p> }
         { forecast && <Forecast currentConditions={currentConditions} location={location} forecast={forecast} /> }
+        <InputModal
+          inputModal={this.state.inputModal}
+          closeInputModal={this.closeInputModal}
+          getWeather={this.getWeather}
+        />
       </div>
     )
   }
