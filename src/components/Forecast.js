@@ -17,7 +17,7 @@ const Forecast = (props) => (
         return (
           <ForecastDay 
             key={day.date}
-            day={day.date} 
+            date={day.date} 
             conditions={day.day.condition.text} 
             imgsrc={day.day.condition.icon}
             high={day.day.maxtemp_f}
