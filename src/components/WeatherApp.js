@@ -4,8 +4,7 @@ import Forecast from './Forecast';
 import InputForm from './InputForm';
 import InputModal from './InputModal';
 
-import Key from '../weatherAPIKey';
-const apiKey = Key;
+import { apixuKey } from '../weatherAPIKey';
 
 export default class WeatherApp extends React.Component {
   state = {
@@ -14,7 +13,7 @@ export default class WeatherApp extends React.Component {
   }
 
   getWeather = (zipCode) => {
-    fetch(`https://api.apixu.com/v1/forecast.json?key=${apiKey}&q=${zipCode}&days=3`)
+    fetch(`https://api.apixu.com/v1/forecast.json?key=${apixuKey}&q=${zipCode}&days=7`)
     .then((json) => json.json())
     .then((data) => this.setState({
       weather: data,
