@@ -10,7 +10,7 @@ export default class WeatherApp extends React.Component {
   state = {
     weather: undefined,
     inputModal: undefined
-  }
+  };
 
   getWeather = (zipCode) => {
     fetch(`https://api.apixu.com/v1/forecast.json?key=${apixuKey}&q=${zipCode}&days=7`)
