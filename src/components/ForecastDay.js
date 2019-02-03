@@ -2,8 +2,14 @@ import React from 'react';
 import moment from 'moment';
 
 const ForecastDay = (props) => (
-  <div>
-    {moment(props.date).format('ddd, MMMM Do YYYY')} {props.conditions} <img src={props.imgsrc} width="32" height="32" /> High: {props.high} Low: {props.low}
+  <div className="forecast-day">
+    <div className="forecast-day__date">
+      {moment(props.date).format('ddd, MMMM Do')}
+    </div>
+    
+    <div className="forecast-day__conditions">
+      <img src={props.imgsrc} width="32" height="32" title={props.conditions} /> {props.high}&deg; / {props.low}&deg;
+    </div>    
   </div>
 );
 

@@ -1,0 +1,29 @@
+.current-conditions {
+  background-color: red;
+  margin-bottom: $s-size;
+}
+
+.current-conditions__summary {
+  background-color: yellow;
+  padding: 0 $s-size;
+}
+
+.current-conditions__details {
+  background-color: lime;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 $s-size;
+}
+
+.current-conditions__temperature {
+  background-color: cyan;
+  font-size: $jumbo-size;
+  flex: 2;
+  line-height: 0.8em;
+  margin: 0;
+}
+
+.current-conditions__high-low {
+  background-color: purple;
+  flex: 1;
+}

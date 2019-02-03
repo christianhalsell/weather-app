@@ -6,12 +6,12 @@ const Forecast = (props) => (
   <div>
     {
       <CurrentConditions
-        currentTemperature={props.currentConditions.temp_f}
+        currentTemperature={Math.round(props.currentConditions.temp_f)}
         currentIconSrc={props.currentConditions.condition.icon}
         currentWeather={props.currentConditions.condition.text}
         currentDate={props.forecast[0].date}
-        currentHigh={props.forecast[0].day.maxtemp_f}
-        currentLow={props.forecast[0].day.mintemp_f}
+        currentHigh={Math.round(props.forecast[0].day.maxtemp_f)}
+        currentLow={Math.round(props.forecast[0].day.mintemp_f)}
       />
     }
     {
@@ -23,8 +23,8 @@ const Forecast = (props) => (
               date={day.date} 
               conditions={day.day.condition.text} 
               imgsrc={day.day.condition.icon}
-              high={day.day.maxtemp_f}
-              low={day.day.mintemp_f}
+              high={Math.round(day.day.maxtemp_f)}
+              low={Math.round(day.day.mintemp_f)}
             />
           )
         }        

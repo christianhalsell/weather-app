@@ -1,0 +1,19 @@
+.forecast-day {
+  align-items: center;
+  background-color: pink;
+  display: flex;
+  margin-bottom: 1px;
+  padding: 0 $s-size;
+}
+
+.forecast-day__date {
+  background-color: orange;
+  flex: 2;
+}
+
+.forecast-day__conditions {
+  align-items: center;
+  background-color: forestgreen;
+  display: flex;
+  flex: 1;
+}
