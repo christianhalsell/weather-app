@@ -1,0 +1,22 @@
+.header {
+  align-items: center;
+  background-color: $dark-gray;
+  color: $light-blue;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__title {
+  font-size: $m-size;
+  margin: 0;
+  padding: $s-size;
+}
+
+.header__desktop-form {
+  display: none;
+  background: blue;
+}
+
+.header__mobile-form {
+  background-color: red;
+}

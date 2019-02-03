@@ -51,19 +51,16 @@ export default class WeatherApp extends React.Component {
   };
 
   render() {
-    const title = 'Weather App';
-    const subTitle = 'Weather app in React'
     const currentConditions = this.state.weather ? this.state.weather.current : false;
-    const location = this.state.weather ? this.state.weather.location : false;
+    const location = this.state.weather ? this.state.weather.location : undefined;
     const forecast = (this.state.weather && this.state.weather.forecast) ? this.state.weather.forecast.forecastday : false;
     const error = (this.state.weather && this.state.weather.error) ? this.state.weather.error.message : false;
     
     return (
       <div>
-        <Header title={title} subtitle={subTitle} openInputModal={this.openInputModal} />
-        <InputForm getWeather={this.getWeather} />        
+        <Header location={location} openInputModal={this.openInputModal} />
         { error && <p>{error}</p> }
-        { forecast && <Forecast currentConditions={currentConditions} location={location} forecast={forecast} /> }
+        { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} /> }
         <InputModal
           inputModal={this.state.inputModal}
           closeInputModal={this.closeInputModal}

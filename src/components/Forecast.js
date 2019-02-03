@@ -4,7 +4,6 @@ import ForecastDay from './ForecastDay';
 
 const Forecast = (props) => (
   <div>
-    <p>Forecast for {props.location.name }, {props.location.region}</p>
     {
       <CurrentConditions
         currentTemperature={props.currentConditions.temp_f}
