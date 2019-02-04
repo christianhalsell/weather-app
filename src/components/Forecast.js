@@ -3,7 +3,7 @@ import CurrentConditions from './CurrentConditions'
 import ForecastDay from './ForecastDay';
 
 const Forecast = (props) => (
-  <div>
+  <div className="forecast">
     {
       <CurrentConditions
         currentTemperature={Math.round(props.currentConditions.temp_f)}
