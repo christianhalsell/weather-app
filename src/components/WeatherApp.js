@@ -57,9 +57,9 @@ export default class WeatherApp extends React.Component {
     const error = (this.state.weather && this.state.weather.error) ? this.state.weather.error.message : false;
     
     return (
-      <div>
+      <div className="weather-app">
         <Header location={location} openInputModal={this.openInputModal} />
-        { error && <p>{error}</p> }
+        { error && <div>{error}</div> }
         { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} /> }
         <InputModal
           inputModal={this.state.inputModal}
