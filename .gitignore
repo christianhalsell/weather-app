@@ -1,3 +1,4 @@
 node_modules/
 src/weatherAPIKey.js
+public/images/
 weather-app.png
