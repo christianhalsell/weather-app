@@ -21,9 +21,18 @@ export default class WeatherApp extends React.Component {
     }))
     .then(() => {
       console.log('this.state', this.state);
+      this.weatherBackground();
     })
     .catch((err) => console.error(err.message))
   };
+
+  weatherBackground = () => {
+    const weatherApp = document.querySelector('#weatherApp');
+    const weatherClass = this.state.weather.current.condition.text || '';
+
+    weatherApp.classList = 'weather-app';
+    weatherApp.classList.add(weatherClass.split(' ').join('-').toLowerCase());
+  }
 
   openInputModal = () => {
     this.setState(() => ({
@@ -57,7 +66,7 @@ export default class WeatherApp extends React.Component {
     const error = (this.state.weather && this.state.weather.error) ? this.state.weather.error.message : false;
     
     return (
-      <div className="weather-app">
+      <div id="weatherApp" className="weather-app">
         <Header location={location} openInputModal={this.openInputModal} />
         { error && <div>{error}</div> }
         { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} /> }
