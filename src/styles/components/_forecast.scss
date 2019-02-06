@@ -1,5 +1,13 @@
 .forecast {
-  position: absolute;
   bottom: 0;
+  position: absolute;
   width: 100%
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .forecast {
+    margin: 50px auto;
+    position: relative;
+    width: 70rem;
+  }
 }

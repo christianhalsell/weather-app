@@ -17,3 +17,12 @@
   display: flex;
   flex: 1;
 }
+
+@media (min-width: $desktop-breakpoint) {
+  .forecast-day {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+    margin-top: 4px;
+    border-radius: 10px;
+    padding: 20px $s-size;
+  }
+}

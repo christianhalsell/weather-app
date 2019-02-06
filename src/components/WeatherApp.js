@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from './Header';
 import Forecast from './Forecast';
-import InputForm from './InputForm';
 import InputModal from './InputModal';
 
 import { apixuKey } from '../weatherAPIKey';
