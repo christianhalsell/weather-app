@@ -21,19 +21,16 @@
 
 .current-conditions__details {
   display: flex;
-  justify-content: space-between;
   padding: 0 $s-size;
 }
 
 .current-conditions__temperature {
   font-size: $jumbo-size;
-  flex: 3;
   letter-spacing: -6px;
   line-height: 0.8em;
-  margin: 0;
+  margin-right: $l-size;
 }
 
 .current-conditions__high-low {
-  flex: 2;
   font-size: $l-size;
 }
