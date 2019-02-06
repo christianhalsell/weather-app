@@ -1,10 +1,21 @@
 .current-conditions {
+  color: white;
   margin-bottom: $s-size;
+  text-shadow: 0 0 4px rgba(0, 0, 0, .6);
 }
 
 .current-conditions__summary {
-  background-color: yellow;
+  align-items: center;
+  display: flex;
   padding: 0 $s-size;
+}
+
+.current-conditions__header {
+  font-size: $l-size
+}
+
+.current-conditions__date {
+  font-size: $xs-size;
 }
 
 .current-conditions__details {
@@ -14,16 +25,14 @@
 }
 
 .current-conditions__temperature {
-  color: white;
   font-size: $jumbo-size;
-  flex: 2;
+  flex: 3;
   letter-spacing: -6px;
   line-height: 0.8em;
-  text-shadow: 0 0 4px rgba(0, 0, 0, .6);
   margin: 0;
 }
 
 .current-conditions__high-low {
-  background-color: purple;
-  flex: 1;
+  flex: 2;
+  font-size: $l-size;
 }
