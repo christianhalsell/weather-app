@@ -1,10 +1,11 @@
 .forecast-day {
   align-items: center;
   background-color: $teal-transparent;
+  font-size: $m-size;
   font-weight: 700;
   display: flex;
   margin-top: 1px;
-  padding: 2px $s-size;
+  padding: 10px $s-size;
 }
 
 .forecast-day__date {
