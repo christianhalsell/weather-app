@@ -1,6 +1,10 @@
+.header-wrapper {
+  background-color: $dark-gray;
+  width: 100%;
+}
+
 .header {
   align-items: center;
-  background-color: $dark-gray;
   color: $light-blue;
   display: flex;
   justify-content: space-between;
@@ -19,4 +23,19 @@
 
 .header__mobile-form {
   background-color: red;
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .header {
+    margin: 0 auto;
+    width: 70rem;
+  }
+
+  .header__desktop-form {
+    display: block;
+  }
+
+  .header__mobile-form {
+    display: none;
+  }
 }
