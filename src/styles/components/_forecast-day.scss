@@ -4,18 +4,23 @@
   font-size: $m-size;
   font-weight: 700;
   display: flex;
+  justify-content: space-between;
   margin-top: 1px;
   padding: 10px $s-size;
-}
-
-.forecast-day__date {
-  flex: 2;
 }
 
 .forecast-day__conditions {
   align-items: center;
   display: flex;
-  flex: 1;
+}
+
+.forecast-day__conditions-display {
+  display: none;
+  margin-right: $s-size;
+}
+
+.forecast-day__conditions-icon {
+  margin-right: $s-size;
 }
 
 @media (min-width: $desktop-breakpoint) {
@@ -24,5 +29,9 @@
     margin-top: 4px;
     border-radius: 10px;
     padding: 20px $s-size;
+  }
+
+  .forecast-day__conditions-display {
+    display: inline-block;
   }
 }
