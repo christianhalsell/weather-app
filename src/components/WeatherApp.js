@@ -3,7 +3,7 @@ import Header from './Header';
 import Forecast from './Forecast';
 import InputModal from './InputModal';
 
-import { apixuKey } from '../weatherAPIKey';
+const apixuKey = '5d72fda7890c48a78b9184717182812'; // Need to put in backend in prod
 
 export default class WeatherApp extends React.Component {
   state = {
@@ -52,6 +52,8 @@ export default class WeatherApp extends React.Component {
 
       if (storedZip) {
         this.getWeather(storedZip);
+      } else {
+        this.openInputModal();
       }
     } catch (err) {
       console.log(err.message)

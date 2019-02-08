@@ -14,7 +14,7 @@ const Header = (props) => {
           <InputForm getWeather={props.getWeather} />
         </div>
         <div className="header__mobile-form" onClick={props.openInputModal}>
-          <img className="header__mobile-form-image" src="/images/location-icon.png" />
+          <img className="header__mobile-form-image" src="./images/location-icon.png" />
         </div>
       </div>
     </div>
