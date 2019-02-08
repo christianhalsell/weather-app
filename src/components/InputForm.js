@@ -17,7 +17,7 @@ export default class InputForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.findLocation}>
-          <input type="text" name="location" placeholder="Enter your city or zipcode" />
+          <input type="text" name="location" placeholder="city or zipcode" />
           <button>Submit</button>
         </form>
       </div>

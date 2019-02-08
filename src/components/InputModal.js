@@ -7,6 +7,7 @@ const inputModal = (props) => (
     isOpen={!!props.inputModal}
     onRequestClose={props.closeInputModal}
     contentLabel="Input Modal"
+    className="modal"
   >
     <InputForm getWeather={props.getWeather} />
   </Modal>
