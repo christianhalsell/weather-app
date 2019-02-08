@@ -25,7 +25,13 @@
   max-width: 60rem;
   outline: none;
   padding: $xl-size;
-  text-align: center;
+  text-align: center;  
+
+  input[type='text'],
+  input[type='number'],
+  textarea {
+    font-size: 1.6rem;
+  }
 }
 
 .modal__title {
