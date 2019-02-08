@@ -10,7 +10,9 @@ const Header = (props) => {
         <div className="header__desktop-form">
           <InputForm getWeather={props.getWeather} />
         </div>
-        <div className="header__mobile-form" onClick={props.openInputModal}>Mobile Input</div>
+        <div className="header__mobile-form" onClick={props.openInputModal}>
+          <img className="header__mobile-form-image" src="/images/location-icon.png" />
+        </div>
       </div>
     </div>
     

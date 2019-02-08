@@ -18,11 +18,15 @@
 
 .header__desktop-form {
   display: none;
-  background: blue;
 }
 
 .header__mobile-form {
-  background-color: red;
+  margin-right: $s-size;
+}
+
+.header__mobile-form-image {
+  height: 26px;
+  width: auto;
 }
 
 @media (min-width: $desktop-breakpoint) {
