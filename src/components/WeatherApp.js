@@ -66,8 +66,7 @@ export default class WeatherApp extends React.Component {
     
     return (
       <div id="weatherApp" className="weather-app">
-        <Header location={location} openInputModal={this.openInputModal} getWeather={this.getWeather} />
-        { error && <div>{error}</div> }
+        <Header error={error} location={location} openInputModal={this.openInputModal} getWeather={this.getWeather} />
         { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} /> }
         <InputModal
           inputModal={this.state.inputModal}
