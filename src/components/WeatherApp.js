@@ -61,10 +61,11 @@ export default class WeatherApp extends React.Component {
   };
 
   render() {
-    const currentConditions = this.state.weather ? this.state.weather.current : false;
-    const location = this.state.weather ? this.state.weather.location : undefined;
-    const forecast = (this.state.weather && this.state.weather.forecast) ? this.state.weather.forecast.forecastday : false;
-    const error = (this.state.weather && this.state.weather.error) ? this.state.weather.error.message : false;
+    const { weather } = this.state;
+    const currentConditions = weather ? weather.current : false;
+    const location = weather ? weather.location : undefined;
+    const forecast = (weather && weather.forecast) ? weather.forecast.forecastday : false;
+    const error = (weather && weather.error) ? weather.error.message : false;
     
     return (
       <div id="weatherApp" className="weather-app">
