@@ -7,9 +7,14 @@
 
 .button {
   background-color: $teal;
-  border: none;
+  border: 1px solid $teal;
   color: white;
   font-weight: 500;
   padding: $micro-size;
 }
 
+@media (min-width: $desktop-breakpoint) {
+  .button {
+    border: none;
+  }  
+}
