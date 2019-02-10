@@ -66,16 +66,30 @@ export default class WeatherApp extends React.Component {
     const location = weather ? weather.location : undefined;
     const forecast = (weather && weather.forecast) ? weather.forecast.forecastday : false;
     const error = (weather && weather.error) ? weather.error.message : false;
+
+    const weatherProps = {
+      error,
+      location,
+      openInputModal: this.openInputModal,
+      getWeather: this.getWeather
+    }
+
+    const forecastProps = {
+      currentConditions,
+      forecast
+    }
+
+    const inputModalProps = {
+      inputModal: this.state.inputModal,
+      closeInputModal: this.clseInputModal,
+      getWeather: this.getWeather
+    }
     
     return (
       <div id="weatherApp" className="weather-app">
-        <Header error={error} location={location} openInputModal={this.openInputModal} getWeather={this.getWeather} />
-        { forecast && <Forecast currentConditions={currentConditions} forecast={forecast} /> }
-        <InputModal
-          inputModal={this.state.inputModal}
-          closeInputModal={this.closeInputModal}
-          getWeather={this.getWeather}
-        />
+        <Header {...weatherProps} />
+        { forecast && <Forecast {...forecastProps} /> }
+        <InputModal {...inputModalProps} />
       </div>
     )
   }
