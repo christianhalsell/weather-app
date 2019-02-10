@@ -7,3 +7,5 @@ Instructions
 - Run `yarn install`
 - Run `yarn run dev-server`
 - Open browser to `localhost:8081`
+
+Live version can be viewed at www.christianhalsell.com/weather
